@@ -1,12 +1,12 @@
 import express from 'express'
-import mongoose, { type InferSchemaType } from 'mongoose'
+import { type InferSchemaType } from 'mongoose'
 import { User, Team, Activity, Workout } from './models/index.js'
 import { userSchema } from './models/user.js'
+import { connectDatabase } from './database.js'
 
 const app = express()
 const PORT = 8000
 const CODESPACE_NAME = process.env.CODESPACE_NAME
-const MONGODB_URI = process.env.MONGODB_URI ?? 'mongodb://localhost:27017/octofit_db'
 const API_BASE_URL = CODESPACE_NAME
   ? `https://${CODESPACE_NAME}-8000.app.github.dev/api`
   : `http://localhost:${PORT}/api`
@@ -15,9 +15,7 @@ const API_BASE_URL = CODESPACE_NAME
 app.use(express.json())
 
 // MongoDB Connection
-mongoose.connect(MONGODB_URI)
-  .then(() => console.log('Connected to MongoDB'))
-  .catch((err) => console.error('MongoDB connection error:', err))
+await connectDatabase()
 
 // API metadata endpoint with Codespaces-aware URL support
 app.get('/api/info', (req, res) => {
