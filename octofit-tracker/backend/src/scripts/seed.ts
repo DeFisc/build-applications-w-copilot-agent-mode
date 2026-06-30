@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 import { User, Team, Activity, Workout, Leaderboard } from '../models/index.js'
-import { getMongoDBUri } from '../database.js'
+import { getMongoDBUri } from '../config/database.js'
 
 const MONGODB_URI = getMongoDBUri()
 

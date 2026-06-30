@@ -2,7 +2,7 @@ import express from 'express'
 import { type InferSchemaType } from 'mongoose'
 import { User, Team, Activity, Workout } from './models/index.js'
 import { userSchema } from './models/user.js'
-import { connectDatabase } from './database.js'
+import { connectDatabase } from './config/database.js'
 
 const app = express()
 const PORT = 8000
