@@ -5,11 +5,12 @@ import { userSchema } from './models/user.js'
 import { connectDatabase } from './config/database.js'
 
 const app = express()
-const PORT = 8000
+const PORT = Number(process.env.PORT ?? 8000)
+const HOST = '0.0.0.0'
 const CODESPACE_NAME = process.env.CODESPACE_NAME
 const API_BASE_URL = CODESPACE_NAME
-  ? `https://${CODESPACE_NAME}-8000.app.github.dev/api`
-  : `http://localhost:${PORT}/api`
+  ? `https://${CODESPACE_NAME}-8000.app.github.dev`
+  : `http://localhost:${PORT}`
 
 // Middleware
 app.use(express.json())
@@ -83,6 +84,6 @@ app.get('/api/leaderboard', async (_req, res) => {
   res.json({ leaderboard: enriched })
 })
 
-app.listen(PORT, () => {
+app.listen(PORT, HOST, () => {
   console.log(`Server running on ${API_BASE_URL}`)
 })
