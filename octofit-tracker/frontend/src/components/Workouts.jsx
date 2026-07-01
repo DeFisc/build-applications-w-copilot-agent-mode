@@ -11,7 +11,7 @@ export default function Workouts() {
 
     const loadWorkouts = async () => {
       try {
-        const data = await requestCollection('workouts', 'workouts')
+        const data = await requestCollection('/api/workouts/', 'workouts')
         if (active) {
           setWorkouts(data)
         }

@@ -11,7 +11,7 @@ export default function Users() {
 
     const loadUsers = async () => {
       try {
-        const data = await requestCollection('users', 'users')
+        const data = await requestCollection('/api/users/', 'users')
         if (active) {
           setUsers(data)
         }

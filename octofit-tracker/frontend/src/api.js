@@ -9,7 +9,13 @@ export const getApiBaseUrl = () => {
   return 'http://localhost:8000'
 }
 
-export const buildApiUrl = (resource) => `${getApiBaseUrl()}/api/${resource}`
+export const buildApiUrl = (resource) => {
+  const normalizedResource = resource?.trim?.() ?? ''
+  const path = normalizedResource.startsWith('/') ? normalizedResource : `/api/${normalizedResource}`
+  const withTrailingSlash = path.endsWith('/') ? path : `${path}/`
+
+  return `${getApiBaseUrl()}${withTrailingSlash}`
+}
 
 export const requestCollection = async (resource, key) => {
   const response = await fetch(buildApiUrl(resource))

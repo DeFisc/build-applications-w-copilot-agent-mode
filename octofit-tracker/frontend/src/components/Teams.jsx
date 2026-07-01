@@ -11,7 +11,7 @@ export default function Teams() {
 
     const loadTeams = async () => {
       try {
-        const data = await requestCollection('teams', 'teams')
+        const data = await requestCollection('/api/teams/', 'teams')
         if (active) {
           setTeams(data)
         }

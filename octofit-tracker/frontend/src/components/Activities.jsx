@@ -11,7 +11,7 @@ export default function Activities() {
 
     const loadActivities = async () => {
       try {
-        const data = await requestCollection('activities', 'activities')
+        const data = await requestCollection('/api/activities/', 'activities')
         if (active) {
           setActivities(data)
         }

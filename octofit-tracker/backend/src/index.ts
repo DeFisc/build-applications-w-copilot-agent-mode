@@ -27,29 +27,29 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', message: 'OctoFit Tracker API is running' })
 })
 
-app.get('/api/users', async (_req, res) => {
+app.get(['/api/users', '/api/users/'], async (_req, res) => {
   const users = await User.find().limit(50).lean()
   res.json({ users })
 })
 
 type UserSummary = Pick<InferSchemaType<typeof userSchema>, 'name'>
 
-app.get('/api/teams', async (_req, res) => {
+app.get(['/api/teams', '/api/teams/'], async (_req, res) => {
   const teams = await Team.find().limit(50).lean()
   res.json({ teams })
 })
 
-app.get('/api/activities', async (_req, res) => {
+app.get(['/api/activities', '/api/activities/'], async (_req, res) => {
   const activities = await Activity.find().sort({ date: -1 }).limit(100).lean()
   res.json({ activities })
 })
 
-app.get('/api/workouts', async (_req, res) => {
+app.get(['/api/workouts', '/api/workouts/'], async (_req, res) => {
   const workouts = await Workout.find().limit(50).lean()
   res.json({ workouts })
 })
 
-app.get('/api/leaderboard', async (_req, res) => {
+app.get(['/api/leaderboard', '/api/leaderboard/'], async (_req, res) => {
   const leaderboard = await Activity.aggregate([
     {
       $group: {

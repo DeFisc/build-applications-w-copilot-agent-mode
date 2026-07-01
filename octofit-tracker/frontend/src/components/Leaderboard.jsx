@@ -11,7 +11,7 @@ export default function Leaderboard() {
 
     const loadLeaderboard = async () => {
       try {
-        const data = await requestCollection('leaderboard', 'leaderboard')
+        const data = await requestCollection('/api/leaderboard/', 'leaderboard')
         if (active) {
           setEntries(data)
         }
