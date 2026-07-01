@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { requestCollection } from '../api.js'
 
+const leaderboardEndpoint = 'https://<codespace>-8000.app.github.dev/api/leaderboard'
+
 export default function Leaderboard() {
   const [entries, setEntries] = useState([])
   const [loading, setLoading] = useState(true)
@@ -11,7 +13,7 @@ export default function Leaderboard() {
 
     const loadLeaderboard = async () => {
       try {
-        const data = await requestCollection('/api/leaderboard/', 'leaderboard')
+        const data = await requestCollection(leaderboardEndpoint, 'leaderboard')
         if (active) {
           setEntries(data)
         }

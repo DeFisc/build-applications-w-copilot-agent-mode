@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { requestCollection } from '../api.js'
 
+const usersEndpoint = 'https://<codespace>-8000.app.github.dev/api/users'
+
 export default function Users() {
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(true)
@@ -11,7 +13,7 @@ export default function Users() {
 
     const loadUsers = async () => {
       try {
-        const data = await requestCollection('/api/users/', 'users')
+        const data = await requestCollection(usersEndpoint, 'users')
         if (active) {
           setUsers(data)
         }

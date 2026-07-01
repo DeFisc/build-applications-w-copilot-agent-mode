@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { requestCollection } from '../api.js'
 
+const activitiesEndpoint = 'https://<codespace>-8000.app.github.dev/api/activities'
+
 export default function Activities() {
   const [activities, setActivities] = useState([])
   const [loading, setLoading] = useState(true)
@@ -11,7 +13,7 @@ export default function Activities() {
 
     const loadActivities = async () => {
       try {
-        const data = await requestCollection('/api/activities', 'activities')
+        const data = await requestCollection(activitiesEndpoint, 'activities')
         if (active) {
           setActivities(data)
         }

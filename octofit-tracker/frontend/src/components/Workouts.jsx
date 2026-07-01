@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { requestCollection } from '../api.js'
 
+const workoutsEndpoint = 'https://<codespace>-8000.app.github.dev/api/workouts'
+
 export default function Workouts() {
   const [workouts, setWorkouts] = useState([])
   const [loading, setLoading] = useState(true)
@@ -11,7 +13,7 @@ export default function Workouts() {
 
     const loadWorkouts = async () => {
       try {
-        const data = await requestCollection('/api/workouts/', 'workouts')
+        const data = await requestCollection(workoutsEndpoint, 'workouts')
         if (active) {
           setWorkouts(data)
         }

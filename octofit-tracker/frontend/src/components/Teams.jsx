@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { requestCollection } from '../api.js'
 
+const teamsEndpoint = 'https://<codespace>-8000.app.github.dev/api/teams'
+
 export default function Teams() {
   const [teams, setTeams] = useState([])
   const [loading, setLoading] = useState(true)
@@ -11,7 +13,7 @@ export default function Teams() {
 
     const loadTeams = async () => {
       try {
-        const data = await requestCollection('/api/teams/', 'teams')
+        const data = await requestCollection(teamsEndpoint, 'teams')
         if (active) {
           setTeams(data)
         }
